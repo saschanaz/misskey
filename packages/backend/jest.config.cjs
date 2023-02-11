@@ -119,7 +119,7 @@ module.exports = {
 	// resetModules: false,
 
 	// A path to a custom resolver
-	// resolver: './jest-resolver.cjs',
+	resolver: './jest-resolver.cjs',
 
 	// Automatically restore mock state between every test
 	restoreMocks: true,
