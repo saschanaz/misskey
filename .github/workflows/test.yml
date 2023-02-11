@@ -54,7 +54,7 @@ jobs:
       run: pnpm jest-and-coverage
     - name: log
       if: failure()
-      run: cat .pnpm-debug.log
+      run: cat pnpm-debug.log
     - name: Upload Coverage
       uses: codecov/codecov-action@v3
       with:
