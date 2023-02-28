@@ -60,7 +60,9 @@ jobs:
     strategy:
       matrix:
         workspace:
-        - backend
+        - { type: backend, strict: true }
+        - { type: frontend, strict: false }
+        - { type: sw, strict: false }
     steps:
     - uses: actions/checkout@v3.3.0
       with:
@@ -76,4 +78,9 @@ jobs:
         cache: 'pnpm'
     - run: corepack enable
     - run: pnpm i --frozen-lockfile
-    - run: pnpm --filter ${{ matrix.workspace }} run typecheck
+    - run: pnpm --filter ${{ matrix.workspace.type }} run typecheck > typescript.log
+      continue-on-error: ${{ !matrix.workspace.strict }}
+    - name: Annotate Code
+      uses: DerLev/eslint-annotations@v1
+      with:
+        typescript-log: typescript.log
