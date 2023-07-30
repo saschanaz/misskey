@@ -169,6 +169,7 @@ async function composeNotification(data: pushNotificationDataMap[keyof pushNotif
 				}
 
 				case 'pollEnded':
+					// nanntoka
 					return [t('_notification.pollEnded'), {
 						body: data.body.note.text || '',
 						badge: iconUrl('chart-arrows'),
